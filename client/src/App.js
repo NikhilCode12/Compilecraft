@@ -1,5 +1,15 @@
+import "./App.css";
+import { Navbar, Hero, Footer } from "./components/index";
+
 function App() {
-  return <div className="App"></div>;
+  return (
+    <>
+      {/* Navbar */}
+      <Navbar />
+      {/* Hero */}
+      {/* Footer */}
+    </>
+  );
 }
 
 export default App;
