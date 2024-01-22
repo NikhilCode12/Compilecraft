@@ -27,9 +27,12 @@ const Navbar = () => {
       {/* Logo */}
       <div className="logo-container flex gap-2">
         <img className="logo-img" src={logo} width={64} height={64}></img>
-        <span className="logo-text text-[white] text-[20px] my-auto font-[montserrat] font-semibold">
+        <a
+          href="/"
+          className="logo-text text-[white] text-[20px] my-auto font-[montserrat] font-semibold"
+        >
           Compilecraft
-        </span>
+        </a>
       </div>
       {/* Links */}
       <ul className="flex gap-2">
