@@ -23,14 +23,14 @@ const buttons = [
 
 const Navbar = () => {
   return (
-    <div className="navbar-container m-4 flex justify-between">
+    <div className="navbar-container py-4 px-6 flex justify-between">
       {/* Logo */}
       <div className="logo-container flex gap-2">
         <img
           className="logo-img"
           src={logo}
-          width={64}
-          height={64}
+          width={48}
+          height={48}
           alt="logo"
         />
         <a
@@ -47,7 +47,7 @@ const Navbar = () => {
             <a
               key={link.id}
               href={link.uri}
-              className="text-md text-gray-300 font-[500] pointer my-auto mx-6 hover:text-gray-100 active:text-gray-500"
+              className="text-md text-gray-200 font-[500] pointer my-auto mx-6 hover:text-gray-100 active:text-gray-400"
             >
               {link.text}
             </a>
@@ -55,7 +55,7 @@ const Navbar = () => {
         })}
       </ul>
       {/* Authentication */}
-      <div className="flex gap-6 my-auto">
+      <div className="flex gap-4 my-auto">
         {/* Login & Register*/}
         {buttons.map((item) => (
           <button

@@ -18,7 +18,7 @@ const Hero = () => {
     <div className="flex flex-col justify-center items-center mt-12">
       {/* Heading Tagline */}
       <section className="flex gap-1 justify-center">
-        <img src={logo} width={32} height={32} alt="logo" />
+        <span className="font-medium text-teal-400">{"#"}</span>
         <span className="text-white text-[12px] font-medium my-auto">
           Transforming Code into Reality
         </span>
