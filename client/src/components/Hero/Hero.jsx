@@ -1,21 +1,23 @@
-import React from "react";
-import logo from "../../assets/logo.png";
+import React, { useState } from "react";
 
 const portfolioHandler = () => {
-  alert("my portfolio button clicked");
-};
-const startHandler = () => {
-  alert("get started button clicked");
+  // alert("my portfolio button clicked");
 };
 
-const buttons = [
-  { text: "My Portfolio", handler: portfolioHandler },
-  { text: "Get Started", handler: startHandler },
-];
+const Hero = ({ onGetStarted }) => {
+  // check login status of the user
 
-const Hero = () => {
+  const startHandler = () => {
+    // alert("get started button clicked");
+  };
+
+  const buttons = [
+    { text: "My Portfolio", handler: portfolioHandler },
+    { text: "Get Started", handler: startHandler },
+  ];
+
   return (
-    <div className="flex flex-col justify-center items-center mt-12">
+    <div className="flex flex-col justify-center items-center mt-10">
       {/* Heading Tagline */}
       <section className="flex gap-1 justify-center">
         <span className="font-medium text-teal-400">{"#"}</span>
@@ -24,7 +26,7 @@ const Hero = () => {
         </span>
       </section>
       {/* Heading */}
-      <div className="flex flex-col gap-3 my-4 text-center">
+      <div className="flex flex-col gap-3 mt-4 mb-2 text-center">
         <p className="text-white text-5xl font-semibold">
           Coding Visions into Reality
         </p>

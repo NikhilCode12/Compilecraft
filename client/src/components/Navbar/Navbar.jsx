@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/logo.png";
 import "./Navbar.css";
+import LoginForm from "../../pages/auth/LoginForm";
 
-const loginHandler = () => {
-  alert("Login button clicked");
-};
 const registerHandler = () => {
-  alert("Register button clicked");
+  // alert("Register button clicked");
 };
 
 const links = [
@@ -16,12 +14,20 @@ const links = [
   { text: "Contact", uri: "/" },
 ];
 
-const buttons = [
-  { text: "Login", handler: loginHandler },
-  { text: "Register", handler: registerHandler },
-];
+const Navbar = ({ onLoginClick }) => {
+  const isLoggedIn = false;
+  const [showLoginForm, setShowLoginForm] = useState(false);
+  const loginHandler = () => {
+    // alert("Login button clicked");
+    setShowLoginForm(true);
+    onLoginClick();
+  };
 
-const Navbar = () => {
+  const buttons = [
+    { text: "Login", handler: loginHandler },
+    { text: "Register", handler: registerHandler },
+  ];
+
   return (
     <div className="navbar-container py-4 px-6 flex justify-between">
       {/* Logo */}
@@ -47,7 +53,11 @@ const Navbar = () => {
             <a
               key={link.id}
               href={link.uri}
-              className="text-md text-gray-200 font-[500] pointer my-auto mx-6 hover:text-gray-100 active:text-gray-400"
+              className={
+                !isLoggedIn
+                  ? "hidden"
+                  : "text-md text-gray-200 font-[500] pointer my-auto mx-6 hover:text-teal-100 active:text-teal-400"
+              }
             >
               {link.text}
             </a>
