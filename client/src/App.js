@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./App.css";
 import { Navbar, Hero, Footer } from "./components/index";
-import LoginForm from "./pages/auth/LoginForm";
 
 function App() {
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -14,23 +13,23 @@ function App() {
     <div className="bg-gradient-to-t from-[#0b0019] via-[#1d033b] to-[#351b57]">
       {/* Navbar */}
       <Navbar onLoginClick={handleLogin} />
-      {!showLoginForm && <Hero />}
-      {!showLoginForm ? (
+      {showLoginForm ? (
         <Footer
-          height="500px"
-          // bottomClass={true}
+          height={"850px"}
           showLoginForm={showLoginForm}
-          time={2}
-          ymove="300px"
+          time={1.75}
+          ymove={"80%"}
         />
       ) : (
-        <Footer
-          height="80%"
-          // bottomClass={false}
-          showLoginForm={showLoginForm}
-          time={3}
-          ymove="300px"
-        />
+        <>
+          <Hero />
+          <Footer
+            height={"500px"}
+            showLoginForm={showLoginForm}
+            time={1.75}
+            ymove={"300px"}
+          />
+        </>
       )}
     </div>
   );
