@@ -3,23 +3,19 @@ import logo from "../../assets/logo.png";
 import "./Navbar.css";
 import LoginForm from "../../pages/auth/LoginForm";
 
-const registerHandler = () => {
-  // alert("Register button clicked");
-};
-
-const links = [
-  { text: "Home", uri: "/" },
-  { text: "Portfolio", uri: "/" },
-  { text: "About", uri: "/" },
-  { text: "Contact", uri: "/" },
-];
-
-const Navbar = ({ onLoginClick, isLoggedIn }) => {
+const Navbar = ({ onLoginClick, onRegisterClick }) => {
   const [showLoginForm, setShowLoginForm] = useState(false);
+  const [showRegisterForm, setShowRegisterForm] = useState(false);
   const loginHandler = () => {
     // alert("Login button clicked");
-    setShowLoginForm(true);
+    setShowLoginForm(!showLoginForm);
     onLoginClick();
+  };
+
+  const registerHandler = () => {
+    // alert("Register button clicked");
+    setShowRegisterForm(!showRegisterForm);
+    onRegisterClick();
   };
 
   const buttons = [
@@ -45,24 +41,6 @@ const Navbar = ({ onLoginClick, isLoggedIn }) => {
           Compilecraft
         </a>
       </div>
-      {/* Links */}
-      <ul className="flex gap-2">
-        {links.map((link) => {
-          return (
-            <a
-              key={link.id}
-              href={link.uri}
-              className={
-                !isLoggedIn
-                  ? "hidden"
-                  : "text-md text-gray-200 font-[500] pointer my-auto mx-6 hover:text-teal-100 active:text-teal-400"
-              }
-            >
-              {link.text}
-            </a>
-          );
-        })}
-      </ul>
       {/* Authentication */}
       <div className="flex gap-4 my-auto">
         {/* Login & Register*/}

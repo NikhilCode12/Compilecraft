@@ -18,9 +18,10 @@ const LoginForm = ({ onRegisterClicked }) => {
     onRegisterClicked();
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/auth/register", {
+      const response = await axios.post("http://localhost:5000/auth/login", {
         email,
         password,
       });
@@ -42,6 +43,7 @@ const LoginForm = ({ onRegisterClicked }) => {
         src={loginimage}
         alt="cppcraftlogin"
         className="rounded-3xl w-[55%] h-[68%] -mr-4 object-cover "
+        loading="lazy"
       />
       <div className="flex flex-col w-[45%]">
         <div className="text-center my-8">
@@ -50,7 +52,10 @@ const LoginForm = ({ onRegisterClicked }) => {
             Enter your email and password to access your account
           </p>
         </div>
-        <div className="flex flex-col items-center mx-auto">
+        <form
+          className="flex flex-col items-center mx-auto"
+          onSubmit={handleSubmit}
+        >
           <Input
             labelText={"Email"}
             inputPlaceholder={"Enter your email"}
@@ -76,7 +81,7 @@ const LoginForm = ({ onRegisterClicked }) => {
           </div>
           <StyledButton
             buttonText={"Login with Email"}
-            onClick={handleSubmit}
+            buttonType={"submit"}
             className={
               "bg-black text-white mt-8 hover:bg-gray-900 active:bg-black transition-all duration-300 ease-in-out transform"
             }
@@ -84,12 +89,11 @@ const LoginForm = ({ onRegisterClicked }) => {
           <StyledButton
             buttonText={"Sign In with Google"}
             uri={googlelogo}
-            buttonType={"submit"}
             className={
               "border border-gray-400 bg-[whitesmoke] mt-3 hover:bg-gray-300 active:bg-[whitesmoke] transition-all duration-300 ease-in-out"
             }
           />
-        </div>
+        </form>
       </div>
     </>
   );

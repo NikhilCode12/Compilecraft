@@ -3,21 +3,26 @@ import "./App.css";
 import { Navbar, Hero, Footer } from "./components/index";
 function App() {
   const [showLoginForm, setShowLoginForm] = useState(false);
-  const [showNavLinks, setShowNavLinks] = useState(false);
+  const [showRegisterForm, setShowRegisterForm] = useState(false);
 
   const handleLogin = () => {
-    setShowLoginForm(true);
+    setShowLoginForm(!showRegisterForm);
+  };
+
+  const handleRegister = () => {
+    setShowRegisterForm(!showLoginForm);
   };
 
   return (
     <div className="bg-gradient-to-t from-[#0b0019] via-[#1d033b] to-[#351b57]">
       {/* Navbar */}
-      <Navbar onLoginClick={handleLogin} isLoggedIn={showNavLinks} />
-      {showLoginForm ? (
+      <Navbar onLoginClick={handleLogin} onRegisterClick={handleRegister} />
+      {showLoginForm || showRegisterForm ? (
         <Footer
           height={"850px"}
           showLoginForm={showLoginForm}
-          time={2.75}
+          showRegisterForm={showRegisterForm}
+          time={2}
           ymove={"80%"}
         />
       ) : (
@@ -26,8 +31,9 @@ function App() {
           <Footer
             height={"500px"}
             showLoginForm={showLoginForm}
-            time={2}
-            ymove={"300px"}
+            showRegisterForm={showRegisterForm}
+            time={1.25}
+            ymove={"200px"}
           />
         </>
       )}

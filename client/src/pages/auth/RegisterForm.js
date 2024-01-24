@@ -4,16 +4,34 @@ import googlelogo from "../../assets/google.png";
 import Input from "../../components/common/Input";
 import Checkbox from "../../components/common/Checkbox";
 import StyledButton from "../../components/common/StyledButton";
-
-const handleSubmit = () => {
-  alert("Form Submitted");
-};
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const RegisterForm = ({ onLoginClicked }) => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showLoginForm, setShowLoginForm] = useState(false);
   const handleLoginButtonClicked = () => {
     setShowLoginForm(true);
     onLoginClicked();
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:5000/auth/register", {
+        email,
+        password,
+      });
+
+      if (response.status === 201) {
+        alert("User created successfully successfully!");
+        navigate("/authorized");
+      }
+    } catch (error) {
+      console.error("Error during Register:", error);
+    }
   };
 
   return (
@@ -31,21 +49,24 @@ const RegisterForm = ({ onLoginClicked }) => {
           </p>
         </div>
         <form
-          onSubmit={handleSubmit}
           className="flex flex-col items-center mx-auto"
+          onSubmit={handleSubmit}
         >
-          <Input labelText={"Email"} inputPlaceholder={"Enter your email"} />
+          <Input
+            labelText={"Email"}
+            inputPlaceholder={"Enter your email"}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <Input
             labelText={"Password"}
             inputPlaceholder={"Create your password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <div className="flex justify-between w-full text-[12px] font-medium text-gray-700 -mt-1">
             {/* Checkbox for remember me */}
             <Checkbox labelText={"Remember me"} />
-            {/* Forgot Password */}
-            {/* <a className="cursor-pointer hover:text-gray-800 active:text-gray-600">
-              Forgot Password
-            </a> */}
           </div>
           <StyledButton
             buttonText={"Register with Email"}
@@ -57,7 +78,6 @@ const RegisterForm = ({ onLoginClicked }) => {
           <StyledButton
             buttonText={"Sign Up with Google"}
             uri={googlelogo}
-            buttonType={"submit"}
             className={
               "border border-gray-400 bg-[whitesmoke] mt-3 hover:bg-gray-300 active:bg-[whitesmoke] transition-all duration-300 ease-in-out"
             }
