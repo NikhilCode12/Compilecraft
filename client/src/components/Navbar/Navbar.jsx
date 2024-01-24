@@ -48,8 +48,9 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
           <button
             key={item.id}
             onClick={item.handler}
-            className="btn text-white font-medium rounded-full border-[1px] border-teal-400 px-6 py-2
-            hover:border-teal-500 active:border-teal-900 hover:translate-y-1 hover:transition-all hover:ease-in"
+            className="btn text-white font-medium rounded-full border-[1px] border-teal-300 px-6 py-2
+            hover:bg-teal-200  hover:border-slate-500 active:border-slate-900 active:bg-teal-500
+             hover:text-[#0b0019] hover:-translate-y-1 hover:transition-all hover:ease-in-out"
           >
             {item.text}
           </button>
