@@ -21,7 +21,7 @@ const Footer = ({ height, showLoginForm, time, ymove }) => {
               width: "80%",
               height: `${height}`,
             }}
-            initial={{ opacity: 0, y: showLoginForm ? "300px" : `${ymove}` }}
+            initial={{ opacity: 0.5, y: "300px" }}
             animate={{
               opacity: 1,
               y: 0,

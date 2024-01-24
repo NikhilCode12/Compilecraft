@@ -8,21 +8,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Input = ({ labelText, value, onChange, inputPlaceholder }) => {
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-
   const [showPassword, setShowPassword] = useState(false);
 
   const handleTogglePassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
-  };
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
   };
 
   return (
@@ -51,10 +40,8 @@ const Input = ({ labelText, value, onChange, inputPlaceholder }) => {
           }
           name={labelText}
           placeholder={inputPlaceholder}
-          onChange={
-            labelText === "Password" ? handlePasswordChange : handleEmailChange
-          }
-          value={labelText === "Password" ? password : email}
+          onChange={onChange}
+          value={value}
           maxLength={labelText === "Password" && "32"}
           required
           className="w-80 p-2 rounded-md text-[14px] bg-slate-300 focus:outline-none focus:ring ring-indigo-500 font-semibold placeholder:font-normal"

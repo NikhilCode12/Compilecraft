@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const portfolioHandler = () => {
   // alert("my portfolio button clicked");

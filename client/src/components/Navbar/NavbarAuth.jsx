@@ -1,30 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import logo from "../../assets/logo.png";
 import "./Navbar.css";
-import LoginForm from "../../pages/auth/LoginForm";
-
-const registerHandler = () => {
-  // alert("Register button clicked");
-};
+import { useNavigate } from "react-router-dom";
 
 const links = [
-  { text: "Home", uri: "/" },
-  { text: "Portfolio", uri: "/" },
-  { text: "About", uri: "/" },
-  { text: "Contact", uri: "/" },
+  { text: "Home", uri: "/authorized" },
+  { text: "Portfolio", uri: "/authorized" },
+  { text: "About", uri: "/authorized" },
+  { text: "Contact", uri: "/authorized" },
 ];
 
-const Navbar = ({ onLoginClick, isLoggedIn }) => {
-  const [showLoginForm, setShowLoginForm] = useState(false);
-  const loginHandler = () => {
-    // alert("Login button clicked");
-    setShowLoginForm(true);
-    onLoginClick();
-  };
-
+const NavbarAuth = () => {
+  const navigate = useNavigate();
   const buttons = [
-    { text: "Login", handler: loginHandler },
-    { text: "Register", handler: registerHandler },
+    { text: "Logout", handler: () => navigate("/") },
+    {
+      text: "Profile",
+      handler: () => {
+        alert("profile page not ready yet");
+      },
+    },
   ];
 
   return (
@@ -53,9 +48,7 @@ const Navbar = ({ onLoginClick, isLoggedIn }) => {
               key={link.id}
               href={link.uri}
               className={
-                !isLoggedIn
-                  ? "hidden"
-                  : "text-md text-gray-200 font-[500] pointer my-auto mx-6 hover:text-teal-100 active:text-teal-400"
+                "text-md text-gray-200 font-[500] pointer my-auto mx-6 hover:text-teal-100 active:text-teal-400"
               }
             >
               {link.text}
@@ -70,8 +63,9 @@ const Navbar = ({ onLoginClick, isLoggedIn }) => {
           <button
             key={item.id}
             onClick={item.handler}
-            className="btn text-white font-medium rounded-full border-[1px] border-teal-400 px-6 py-2
-            hover:border-teal-500 active:border-teal-900 hover:translate-y-1 hover:transition-all hover:ease-in"
+            className="btn text-white font-medium rounded-full border-[1px] border-teal-300 px-6 py-2
+            hover:bg-teal-200  hover:border-slate-500 active:border-slate-900 active:bg-teal-500
+             hover:text-[#0b0019] hover:-translate-y-1 hover:transition-all hover:ease-in-out"
           >
             {item.text}
           </button>
@@ -81,4 +75,4 @@ const Navbar = ({ onLoginClick, isLoggedIn }) => {
   );
 };
 
-export default Navbar;
+export default NavbarAuth;
