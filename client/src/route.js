@@ -38,7 +38,7 @@ const MyRoutes = () => {
 
         <Route
           path="/cppcraft"
-          element={isAuthenticated ? <AuthApp /> : <Navigate to="/" replace />}
+          element={isAuthenticated ? <App /> : <Navigate to="/" replace />}
         />
 
         {/* Other routes... */}

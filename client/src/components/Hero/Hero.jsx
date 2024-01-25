@@ -1,17 +1,23 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
-const portfolioHandler = () => {};
+const portfolioHandler = () => {
+  window.open("https://github.com/NikhilCode12/compilecraft");
+};
 
-const Hero = ({ onGetStarted }) => {
+const Hero = () => {
   const navigate = useNavigate();
+  const path = useLocation().pathname;
   // check login status of the user
   const startHandler = () => {
-    navigate("/cppcraft");
+    if (path.endsWith("authorized")) navigate("/cppcraft");
+    else {
+      alert("You must Login/Register to get started!");
+    }
   };
 
   const buttons = [
-    { text: "My Portfolio", handler: portfolioHandler },
+    { text: "Github Repo", handler: portfolioHandler },
     { text: "Get Started", handler: startHandler },
   ];
 

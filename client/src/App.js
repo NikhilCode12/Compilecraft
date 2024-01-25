@@ -22,8 +22,8 @@ function App() {
           height={"850px"}
           showLoginForm={showLoginForm}
           showRegisterForm={showRegisterForm}
-          time={2}
-          ymove={"80%"}
+          time={1.25}
+          ymove={"40%"}
         />
       ) : (
         <>
