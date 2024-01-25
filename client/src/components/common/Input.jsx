@@ -17,7 +17,7 @@ const Input = ({ labelText, value, onChange, inputPlaceholder }) => {
   return (
     <div className="flex flex-col mb-4">
       {" "}
-      <div className="mb-2 flex gap-1">
+      <div className="mb-2 flex gap-2">
         <FontAwesomeIcon
           icon={labelText === "Password" ? faLock : faEnvelope}
           size="xs"
@@ -42,7 +42,7 @@ const Input = ({ labelText, value, onChange, inputPlaceholder }) => {
           placeholder={inputPlaceholder}
           onChange={onChange}
           value={value}
-          maxLength={labelText === "Password" && "32"}
+          maxLength={labelText === "Password" ? 32 : undefined}
           required
           className="w-80 p-2 rounded-md text-[14px] bg-slate-300 focus:outline-none focus:ring ring-indigo-500 font-semibold placeholder:font-normal"
         />

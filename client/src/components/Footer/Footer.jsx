@@ -8,6 +8,8 @@ const Footer = ({ height, showLoginForm, showRegisterForm, time, ymove }) => {
   const [showLoginFormInFooter, setShowLoginFormInFooter] =
     useState(showLoginForm);
 
+  const [showForgotForm, setShowForgotForm] = useState(false);
+
   const handleToggleForm = () => {
     setShowLoginFormInFooter((prev) => !prev);
   };
@@ -23,22 +25,34 @@ const Footer = ({ height, showLoginForm, showRegisterForm, time, ymove }) => {
           exit={{ y: `${ymove}` }}
           transition={{ duration: time, ease: "easeInOut" }}
         >
-          {showLoginFormInFooter ? <LoginForm /> : <RegisterForm />}
-          <div
-            className={`flex gap-1 fixed bottom-14 right-[20%] text-gray-700 text-[13px] font-medium`}
-          >
-            <p>
-              {showLoginFormInFooter
-                ? `Don't have an account?`
-                : `Already have an account?`}
-            </p>
-            <a
-              className="font-bold hover:text-gray-800 active:text-gray-600 cursor-pointer"
-              onClick={handleToggleForm}
+          {showLoginFormInFooter ? (
+            <LoginForm
+              onForgotClicked={() => {
+                setShowForgotForm(true);
+              }}
+            />
+          ) : (
+            <RegisterForm
+              onLoginFormShow={() => setShowLoginFormInFooter(true)}
+            />
+          )}
+          {showForgotForm ? undefined : (
+            <div
+              className={`flex gap-1 fixed bottom-8 right-[20%] text-gray-700 text-[13px] font-medium`}
             >
-              {showLoginFormInFooter ? "Register" : "Login"}
-            </a>
-          </div>
+              <p>
+                {showLoginFormInFooter
+                  ? `Don't have an account?`
+                  : `Already have an account?`}
+              </p>
+              <a
+                className="font-bold hover:text-gray-800 active:text-gray-600 cursor-pointer"
+                onClick={handleToggleForm}
+              >
+                {showLoginFormInFooter ? "Register" : "Login"}
+              </a>
+            </div>
+          )}
         </motion.div>
       ) : (
         <motion.img

@@ -20,6 +20,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // API route for login
 app.use("/auth", authRoutes);
 // Middleware for authorization at '/authorized' route
+// API route for user registration
+app.post("/auth/register", registerUser);
 app.get("/authorized", authenticateMiddleware, (req, res) => {
   req.json({ msg: "You are authorized" });
 });
@@ -27,9 +29,6 @@ app.get("/authorized", authenticateMiddleware, (req, res) => {
 app.get("/cppcraft", authenticateMiddleware, (req, res) => {
   return res.json({ name: "cppcraft app accessed" });
 });
-
-// API route for user registration
-app.post("/auth/register", registerUser);
 
 // Database Handling (Mongoose)
 mongoose
