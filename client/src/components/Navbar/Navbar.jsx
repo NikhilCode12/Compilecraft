@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../../assets/logo.png";
 import "./Navbar.css";
-import LoginForm from "../../pages/auth/LoginForm";
+import { motion } from "framer-motion";
 
-const Navbar = ({ onLoginClick, onRegisterClick }) => {
+const Navbar = ({ onLoginClick, onRegisterClick, showMessage }) => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showRegisterForm, setShowRegisterForm] = useState(false);
+  const [isMessageVisible, setIsMessageVisible] = useState(false);
+
   const loginHandler = () => {
-    // alert("Login button clicked");
     setShowLoginForm(!showLoginForm);
     onLoginClick();
   };
 
   const registerHandler = () => {
-    // alert("Register button clicked");
     setShowRegisterForm(!showRegisterForm);
     onRegisterClick();
   };
@@ -22,6 +22,21 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
     { text: "Login", handler: loginHandler },
     { text: "Register", handler: registerHandler },
   ];
+
+  useEffect(() => {
+    // Show the message every time showMessage becomes true
+    setIsMessageVisible(showMessage);
+
+    // If showMessage is true, set a timeout to hide the message after 5 seconds
+    if (showMessage) {
+      const timeoutId = setTimeout(() => {
+        setIsMessageVisible(false);
+      }, 5000);
+
+      // Clean up the timeout when the component unmounts or when showMessage changes
+      return () => clearTimeout(timeoutId);
+    }
+  }, [showMessage]);
 
   return (
     <div className="navbar-container py-4 px-6 flex justify-between">
@@ -41,6 +56,20 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
           Compilecraft
         </a>
       </div>
+      {isMessageVisible && (
+        <motion.div
+          initial={{ opacity: 0.5 }}
+          animate={{
+            opacity: 1,
+            transition: { duration: 0.5, ease: "easeInOut" },
+          }}
+          className="w-auto my-auto bg-slate-300 px-3 py-1 rounded-md"
+        >
+          <p className="text-green-700 font-medium text-[13px] text-center">
+            You need to login/register, to get access!
+          </p>
+        </motion.div>
+      )}
       {/* Authentication */}
       <div className="flex gap-4 my-auto">
         {/* Login & Register*/}

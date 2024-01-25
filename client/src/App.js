@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { Navbar, Hero, Footer } from "./components/index";
+
 function App() {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showRegisterForm, setShowRegisterForm] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
 
   const handleLogin = () => {
     setShowLoginForm(!showRegisterForm);
@@ -16,7 +18,11 @@ function App() {
   return (
     <div className="bg-gradient-to-t from-[#0b0019] via-[#1d033b] to-[#351b57]">
       {/* Navbar */}
-      <Navbar onLoginClick={handleLogin} onRegisterClick={handleRegister} />
+      <Navbar
+        onLoginClick={handleLogin}
+        onRegisterClick={handleRegister}
+        showMessage={showMessage}
+      />
       {showLoginForm || showRegisterForm ? (
         <Footer
           height={"850px"}
@@ -27,7 +33,7 @@ function App() {
         />
       ) : (
         <>
-          <Hero />
+          <Hero onGetStartedBeforeLogin={() => setShowMessage(true)} />
           <Footer
             height={"500px"}
             showLoginForm={showLoginForm}

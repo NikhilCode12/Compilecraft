@@ -5,14 +5,14 @@ const portfolioHandler = () => {
   window.open("https://github.com/NikhilCode12/compilecraft");
 };
 
-const Hero = () => {
+const Hero = ({ onGetStartedBeforeLogin }) => {
   const navigate = useNavigate();
   const path = useLocation().pathname;
   // check login status of the user
   const startHandler = () => {
     if (path.endsWith("authorized")) navigate("/cppcraft");
     else {
-      alert("You must Login/Register to get started!");
+      onGetStartedBeforeLogin();
     }
   };
 
@@ -53,7 +53,7 @@ const Hero = () => {
             onClick={item.handler}
             className={`${
               item.text === "Get Started"
-                ? "bg-teal-200 text-[#0b0019] hover:bg-teal-300"
+                ? "bg-teal-200 text-black hover:bg-teal-300"
                 : undefined
             } btn text-white font-medium rounded-full border-[1px] border-teal-300 px-6 py-2
             hover:bg-teal-200  hover:border-slate-500 active:border-slate-900 active:bg-teal-500
