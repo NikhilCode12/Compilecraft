@@ -26,8 +26,11 @@ const LoginForm = ({ onRegisterClicked }) => {
         password,
       });
 
-      if (response.status === 201) {
-        alert("User logged in successfully!");
+      if (response.status === 200) {
+        // Store the token in localStorage
+        localStorage.setItem("token", response.data.token);
+
+        // Redirect to the authorized route
         navigate("/authorized");
       } else {
         alert("Login Failed, check your credentials!");

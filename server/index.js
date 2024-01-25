@@ -6,16 +6,30 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import { registerUser } from "./controllers/auth.js";
-
+import authRoutes from "./routes/auth.js";
+import { authenticateMiddleware } from "./middleware/auth.js";
 const app = express();
 dotenv.config();
-const port = process.env.PORT || 6000;
+const port = process.env.PORT;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
+// API route for login
+app.use("/auth", authRoutes);
+// Middleware for authorization at '/authorized' route
+app.get("/authorized", authenticateMiddleware, (req, res) => {
+  req.json({ msg: "You are authorized" });
+});
+// Main app route
+app.get("/cppcraft", authenticateMiddleware, (req, res) => {
+  return res.json({ name: "cppcraft app accessed" });
+});
+
+// API route for user registration
+app.post("/auth/register", registerUser);
 
 // Database Handling (Mongoose)
 mongoose
@@ -38,9 +52,6 @@ mongoose
 app.get("/", (req, res) => {
   return res.json({ name: "compilercraft" });
 });
-
-// API route for user registration
-app.post("/auth/register", registerUser);
 
 // API route for code execution
 app.post("/run", async (req, res) => {

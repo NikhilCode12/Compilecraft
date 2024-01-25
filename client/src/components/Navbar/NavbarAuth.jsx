@@ -41,7 +41,7 @@ const NavbarAuth = () => {
         </a>
       </div>
       {/* Links */}
-      <ul className="flex gap-2">
+      <div className="flex gap-2">
         {links.map((link) => {
           return (
             <a
@@ -55,7 +55,7 @@ const NavbarAuth = () => {
             </a>
           );
         })}
-      </ul>
+      </div>
       {/* Authentication */}
       <div className="flex gap-4 my-auto">
         {/* Login & Register*/}

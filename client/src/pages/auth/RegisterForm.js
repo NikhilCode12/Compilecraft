@@ -26,7 +26,7 @@ const RegisterForm = ({ onLoginClicked }) => {
       });
 
       if (response.status === 201) {
-        alert("User created successfully successfully!");
+        // alert("User created successfully successfully!");
         navigate("/authorized");
       }
     } catch (error) {

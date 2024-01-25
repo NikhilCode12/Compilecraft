@@ -1,14 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const portfolioHandler = () => {
-  // alert("my portfolio button clicked");
-};
+const portfolioHandler = () => {};
 
 const Hero = ({ onGetStarted }) => {
+  const navigate = useNavigate();
   // check login status of the user
-
   const startHandler = () => {
-    // alert("get started button clicked");
+    navigate("/cppcraft");
   };
 
   const buttons = [
