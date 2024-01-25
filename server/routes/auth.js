@@ -8,4 +8,8 @@ router.post("/login", (req, res) => {
   loginUser(req, res);
 });
 
+router.post("/request-reset", (req, res) => {
+  resetPassword(req, res);
+});
+
 export default router;

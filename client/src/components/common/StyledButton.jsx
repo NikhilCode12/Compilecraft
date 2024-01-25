@@ -20,6 +20,7 @@ const StyledButton = ({
           width={18}
           height={18}
           className="my-auto"
+          loading="lazy"
         />
       ) : undefined}
       <p>{buttonText}</p>

@@ -2,6 +2,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
+import crypto from "crypto";
 
 // Register User
 export const registerUser = async (req, res) => {
@@ -34,6 +35,17 @@ export const loginUser = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_STRING);
     delete user.password;
     res.status(200).json({ token, user });
+  } catch (error) {
+    res.status(500).json({ err: error.message });
+  }
+};
+
+// Password reset if forgot
+export const resetPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email: email });
+    if (!user) return res.json({ msg: "User does not exist" });
   } catch (error) {
     res.status(500).json({ err: error.message });
   }

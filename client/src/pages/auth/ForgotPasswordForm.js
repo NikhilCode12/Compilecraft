@@ -12,11 +12,6 @@ const ForgotPassword = ({ onBackToLogin }) => {
   const handleForgotPassword = async (e) => {
     e.preventDefault();
     try {
-      // Add logic to send a password reset email
-      // For demonstration purposes, let's assume it was successful
-      // You may want to implement actual email sending functionality
-
-      // Simulating a successful password reset
       setShowSuccess(true);
       setErrorAnimationKey((prevKey) => prevKey + 1);
     } catch (error) {
