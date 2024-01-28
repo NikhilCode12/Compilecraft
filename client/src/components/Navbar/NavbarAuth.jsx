@@ -13,7 +13,12 @@ const links = [
 const NavbarAuth = () => {
   const navigate = useNavigate();
   const buttons = [
-    { text: "Logout", handler: () => navigate("/") },
+    {
+      text: "Logout",
+      handler: () => {
+        window.open(`${process.env.REACT_APP_URL}/auth/google/logout`, "_self");
+      },
+    },
     {
       text: "Profile",
       handler: () => {

@@ -39,14 +39,3 @@ export const loginUser = async (req, res) => {
     res.status(500).json({ err: error.message });
   }
 };
-
-// Password reset if forgot
-export const resetPassword = async (req, res) => {
-  try {
-    const { email } = req.body;
-    const user = await User.findOne({ email: email });
-    if (!user) return res.json({ msg: "User does not exist" });
-  } catch (error) {
-    res.status(500).json({ err: error.message });
-  }
-};

@@ -35,6 +35,11 @@ const Login = ({ onRegisterClicked, onForgotClicked }) => {
   const handleRememberMe = () => {
     setRememberMe(!rememberme);
   };
+
+  const handleGoogleLogin = () => {
+    window.open(`http://localhost:5000/auth/google/callback`, "_self");
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -139,6 +144,7 @@ const Login = ({ onRegisterClicked, onForgotClicked }) => {
         <StyledButton
           buttonText={"Sign In with Google"}
           uri={googlelogo}
+          onClick={handleGoogleLogin}
           className={
             "border border-gray-400 bg-[whitesmoke] mt-2 hover:bg-gray-300 active:bg-[whitesmoke] transition-all duration-300 ease-in-out"
           }

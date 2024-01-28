@@ -12,8 +12,16 @@ const ForgotPassword = ({ onBackToLogin }) => {
   const handleForgotPassword = async (e) => {
     e.preventDefault();
     try {
-      setShowSuccess(true);
-      setErrorAnimationKey((prevKey) => prevKey + 1);
+      const response = await axios
+        .post("http://localhost:5000/auth/forgot-password", { email })
+        .then((res) => {
+          if (res.data.Status === "Success") {
+            onBackToLogin();
+          } else {
+            alert("wrong otp");
+          }
+        })
+        .catch((err) => console.log(err));
     } catch (error) {
       console.error("Error during forgot password:", error);
     }
